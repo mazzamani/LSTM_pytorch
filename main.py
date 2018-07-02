@@ -81,36 +81,30 @@ if __name__ == "__main__":
     parser.add_argument('-epochs', default=1000, type=int, help='train iters each timestep')
     parser.add_argument('-seed', default=-1, type=int, help='')
 
-    #filing and visualzing
-    parser.add_argument('--resume', default='default', type=str, help='Resuming model path for testing')
-    parser.add_argument('--visualize', dest='debug', action='store_true')
-    parser.add_argument('--reduced', dest='debug', action='store_true')
-    parser.add_argument('--output', default='output', type=str, help='')
-
     #model
     parser.add_argument('-embed_dim', type=int, default=5, help='number of embedding dimension')
     parser.add_argument('-lstm_hidden_dim', type=int, default=30, help='the number of embedding dimension in LSTM hidden layer')
     parser.add_argument('-lstm_num_layers', type=int, default=3, help='the number of LSTM  layers')
     parser.add_argument('-init_weight', action='store_true', help='init w')
     parser.add_argument('-max-norm', type=float, default=3.0, help='l2 constraint of parameters [default: 3.0]')
-    parser.add_argument('-dropout', type=float, default=0.0, help='the probability for dropout [default: 0.5]')
+    parser.add_argument('-dropout', type=float, default=0.0, help='the probability for dropout [default: 0.0]')
 
 
     #Train Dataset
-    parser.add_argument('-cls', type=int, default=10, help='number of abstract coordination dimension')
-    parser.add_argument('-train_sample_no', type=int, default=1024, help='number of abstract coordination dimension')
-    parser.add_argument('-train_min_seq_len', type=int, default=5, help='number of abstract coordination dimension')
-    parser.add_argument('-train_max_seq_len', type=int, default=10, help='number of abstract coordination dimension')
+    parser.add_argument('-cls', type=int, default=10, help='number of output classes in the generated training dataset')
+    parser.add_argument('-train_sample_no', type=int, default=1024, help='total number of samples in the generated training dataset')
+    parser.add_argument('-train_min_seq_len', type=int, default=5, help='minimum length for each sample in the generated training dataset')
+    parser.add_argument('-train_max_seq_len', type=int, default=10, help='maximum length for each sample in the generated training dataset')
 
     #Val Dataset
-    parser.add_argument('-val_sample_no', type=int, default=256, help='number of abstract coordination dimension')
-    parser.add_argument('-val_min_seq_len', type=int, default=7, help='number of abstract coordination dimension')
-    parser.add_argument('-val_max_seq_len', type=int, default=11, help='number of abstract coordination dimension')
+    parser.add_argument('-val_sample_no', type=int, default=256, help='total number of samples in the generated validation dataset')
+    parser.add_argument('-val_min_seq_len', type=int, default=7, help='minimum length for each sample in the generated validation dataset')
+    parser.add_argument('-val_max_seq_len', type=int, default=11, help='maximum length for each sample in the generated validation dataset')
 
     #Test Dataset
-    parser.add_argument('-test_sample_no', type=int, default=256, help='number of abstract coordination dimension')
-    parser.add_argument('-test_min_seq_len', type=int, default=8, help='number of abstract coordination dimension')
-    parser.add_argument('-test_max_seq_len', type=int, default=13, help='number of abstract coordination dimension')
+    parser.add_argument('-test_sample_no', type=int, default=256, help='total number of samples in the generated test dataset')
+    parser.add_argument('-test_min_seq_len', type=int, default=8, help='minimum length for each sample in the generated test dataset')
+    parser.add_argument('-test_max_seq_len', type=int, default=13, help='maximum length for each sample in the generated test dataset')
 
 
     #Dataset
