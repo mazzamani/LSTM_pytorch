@@ -3,4 +3,4 @@ A set of basic examples to start with classification of a variable length input 
 
 
 # Acknowlegment
-Thanks [Chandrakant Bothe](https://github.com/crbothe) for his valuable feedback.
+Thanks [Egor Lakomkin](https://github.com/EgorLakomkin) and [Chandrakant Bothe](https://github.com/crbothe) for their valuable feedback.
