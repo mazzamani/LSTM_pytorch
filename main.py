@@ -1,6 +1,6 @@
 import argparse
 
-from dataset import IdentityDataset, RestDataSet
+from dataset import IdentityDataset, ModeDataSet
 from torch.utils.data import DataLoader, Dataset
 import numpy as np
 import torch
@@ -82,8 +82,8 @@ if __name__ == "__main__":
     parser.add_argument('-seed', default=-1, type=int, help='')
 
     #model
-    parser.add_argument('-embed_dim', type=int, default=5, help='number of embedding dimension')
-    parser.add_argument('-lstm_hidden_dim', type=int, default=30, help='the number of embedding dimension in LSTM hidden layer')
+    parser.add_argument('-embed_dim', type=int, default=10, help='number of embedding dimension')
+    parser.add_argument('-lstm_hidden_dim', type=int, default=20, help='the number of embedding dimension in LSTM hidden layer')
     parser.add_argument('-lstm_num_layers', type=int, default=3, help='the number of LSTM  layers')
     parser.add_argument('-init_weight', action='store_true', help='init w')
     parser.add_argument('-max-norm', type=float, default=3.0, help='l2 constraint of parameters [default: 3.0]')
@@ -91,8 +91,8 @@ if __name__ == "__main__":
 
 
     #Train Dataset
-    parser.add_argument('-cls', type=int, default=10, help='number of output classes in the generated training dataset')
-    parser.add_argument('-train_sample_no', type=int, default=1024, help='total number of samples in the generated training dataset')
+    parser.add_argument('-cls', type=int, default=5, help='number of output classes in the generated training dataset')
+    parser.add_argument('-train_sample_no', type=int, default=2048, help='total number of samples in the generated training dataset')
     parser.add_argument('-train_min_seq_len', type=int, default=5, help='minimum length for each sample in the generated training dataset')
     parser.add_argument('-train_max_seq_len', type=int, default=10, help='maximum length for each sample in the generated training dataset')
 
@@ -109,16 +109,16 @@ if __name__ == "__main__":
 
     #Dataset
     parser.add_argument('--identity', dest='identity', action='store_true', help='to regenerate what is given as in input sequence')
-    parser.add_argument('--rest', dest='rest', action='store_true',  help=' calculates the reminder of sum of a variable sequence to the given #class_no')
+    parser.add_argument('--mode', dest='rest', action='store_true',  help=' calculates the reminder of sum of a variable sequence to the given #class_no')
 
     parser.set_defaults(visualize=False)
     parser.set_defaults(reduced=False)
-    parser.set_defaults(rest=False)
+    parser.set_defaults(mode=False)
 
     args = parser.parse_args()
 
     if args.rest:
-        MyDatatSet = RestDataSet
+        MyDatatSet = ModeDataSet
     else:
         MyDatatSet = IdentityDataset
 

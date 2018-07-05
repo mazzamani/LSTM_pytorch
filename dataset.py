@@ -26,15 +26,16 @@ class IdentityDataset(Dataset):
         return self.dataset_length
 
 
-class RestDataSet(Dataset):
+class ModeDataSet(Dataset):
     def __init__(self, class_no, sample_no, min_seq_len, max_seq_len):
-        super(RestDataSet, self).__init__()
+        super(ModeDataSet, self).__init__()
         self.x = []
         self.y = []
         self.dataset_length = sample_no
         for i in range(self.dataset_length):
             inseq = np.random.randint(1, class_no, np.random.randint(min_seq_len, max_seq_len + 1))
-            label = np.array([np.mod(np.sum(inseq), class_no)])
+            (values, counts) = np.unique(inseq, return_counts=True)
+            label = np.array([np.argmax(counts) + 1])
             self.x.append(torch.from_numpy(inseq).type(LONG))
             self.y.append(torch.from_numpy(label).type(LONG))
 
