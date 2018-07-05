@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
     #Dataset
     parser.add_argument('--identity', dest='identity', action='store_true', help='to regenerate what is given as in input sequence')
-    parser.add_argument('--mode', dest='rest', action='store_true',  help=' calculates the reminder of sum of a variable sequence to the given #class_no')
+    parser.add_argument('--mode', dest='mode', action='store_true',  help=' calculates the reminder of sum of a variable sequence to the given #class_no')
 
     parser.set_defaults(visualize=False)
     parser.set_defaults(reduced=False)
@@ -117,8 +117,9 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if args.rest:
+    if args.mode:
         MyDatatSet = ModeDataSet
+
     else:
         MyDatatSet = IdentityDataset
 
